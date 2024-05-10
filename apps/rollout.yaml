@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: microservice-a
+  namespace: apps
 spec:
   replicas: 3
   selector:
@@ -37,6 +38,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: microservice-b
+  namespace: apps
 spec:
   replicas: 3
   selector:
@@ -72,6 +74,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: microservice-c
+  namespace: apps
 spec:
   replicas: 3
   selector:
@@ -107,6 +110,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservice-a-stable
+  namespace: apps
 spec:
   selector:
     app: microservice-a
@@ -119,6 +123,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservice-a-canary
+  namespace: apps
 spec:
   selector:
     app: microservice-a
@@ -131,6 +136,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservice-b-stable
+  namespace: apps
 spec:
   selector:
     app: microservice-b
@@ -143,6 +149,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservice-b-canary
+  namespace: apps
 spec:
   selector:
     app: microservice-b
@@ -155,6 +162,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservice-c-stable
+  namespace: apps
 spec:
   selector:
     app: microservice-c
@@ -167,6 +175,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: microservice-c-canary
+  namespace: apps
 spec:
   selector:
     app: microservice-c
