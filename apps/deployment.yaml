@@ -64,10 +64,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: microservice-c
+  name: microservice-a
 spec:
   selector:
-    app: microservice-c
+    app: microservice-a
   ports:
   - port: 3000
     targetPort: 3000
