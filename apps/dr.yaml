@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: microservice-b-destination-rule
-  namespace: apps
 spec:
   host: microservice-b
   subsets:
@@ -17,7 +16,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: microservice-c-destination-rule
-  namespace: apps
 spec:
   host: microservice-c
   subsets:

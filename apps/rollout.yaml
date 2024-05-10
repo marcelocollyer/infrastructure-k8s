@@ -105,3 +105,42 @@ spec:
       - setWeight: 100
       canaryService: microservice-c-canary
       stableService: microservice-c-stable
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-a
+  namespace: apps
+spec:
+  selector:
+    app: microservice-a
+    version: v1
+  ports:
+  - port: 3000
+    targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-b
+  namespace: apps
+spec:
+  selector:
+    app: microservice-b
+    version: v1
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-b
+  namespace: apps
+spec:
+  selector:
+    app: microservice-b
+    version: v1
+  ports:
+  - port: 8080
+    targetPort: 8080      
