@@ -12,20 +12,22 @@ spec:
     metadata:
       labels:
         app: microservice-a
-        version: v2
+        version: v1
     spec:
       containers:
       - name: microservice-a
-        image: marcelocollyer/microservice-a:v2
+        image: marcelocollyer/microservice-a:v1
         ports:
         - containerPort: 3000
   strategy:
     canary:
       steps:
-      - setWeight: 50
+      - setWeight: 30
+      - pause: {}
+      - setWeight: 60
       - pause: {}
       - setWeight: 100
-      - pause: {}
+      - pause: {}   
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -41,17 +43,19 @@ spec:
     metadata:
       labels:
         app: microservice-b
-        version: v2
+        version: v1
     spec:
       containers:
       - name: microservice-b
-        image: marcelocollyer/microservice-b:v2
+        image: marcelocollyer/microservice-b:v1
         ports:
         - containerPort: 8080  
   strategy:
     canary:
       steps:
-      - setWeight: 50
+      - setWeight: 30
+      - pause: {}
+      - setWeight: 60
       - pause: {}
       - setWeight: 100
       - pause: {}   
@@ -70,20 +74,22 @@ spec:
     metadata:
       labels:
         app: microservice-c
-        version: v2
+        version: v1
     spec:
       containers:
       - name: microservice-c
-        image: marcelocollyer/microservice-c:v2
+        image: marcelocollyer/microservice-c:v1
         ports:
         - containerPort: 8000
   strategy:
     canary:
       steps:
-      - setWeight: 50
+      - setWeight: 30
+      - pause: {}
+      - setWeight: 60
       - pause: {}
       - setWeight: 100
-      - pause: {}
+      - pause: {}   
 ---
 apiVersion: v1
 kind: Service
