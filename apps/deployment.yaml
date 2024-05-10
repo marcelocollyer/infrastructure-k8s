@@ -59,9 +59,7 @@ spec:
       - name: microservice-c
         image: marcelocollyer/microservice-c:v2
   ports:
-  - port: 8001
-    targetPort: 3000
-    nodePort: 30000
+  - containerPort: 8000
 ---    
 apiVersion: v1
 kind: Service
