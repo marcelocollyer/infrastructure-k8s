@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: microservice-b-routing
+  name: microservice-b-stable-routing
 spec:
   hosts:
-  - microservice-b
+  - microservice-b-stable
   http:
   - match:
     - sourceLabels:
@@ -26,10 +26,35 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: microservice-c-routing
+  name: microservice-b-canary-routing
 spec:
   hosts:
-  - microservice-c
+  - microservice-b-canary
+  http:
+  - match:
+    - sourceLabels:
+        app: microservice-a
+        version: v1
+    route:
+    - destination:
+        host: microservice-b
+        subset: v1
+  - match:
+    - sourceLabels:
+        app: microservice-a
+        version: v2
+    route:
+    - destination:
+        host: microservice-b
+        subset: v2        
+---        
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: microservice-c-stable-routing
+spec:
+  hosts:
+  - microservice-c-stable
   http:
   - match:
     - sourceLabels:
@@ -47,3 +72,28 @@ spec:
     - destination:
         host: microservice-c
         subset: v2        
+---        
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: microservice-c-canary-routing
+spec:
+  hosts:
+  - microservice-c-canary
+  http:
+  - match:
+    - sourceLabels:
+        app: microservice-b
+        version: v1
+    route:
+    - destination:
+        host: microservice-c
+        subset: v1
+  - match:
+    - sourceLabels:
+        app: microservice-b
+        version: v2
+    route:
+    - destination:
+        host: microservice-c
+        subset: v2 
