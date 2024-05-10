@@ -19,20 +19,6 @@ spec:
         image: marcelocollyer/microservice-a:v1
         ports:
         - containerPort: 3000
-  strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {duration: 60s}
-      - setWeight: 40
-      - pause: {duration: 60s}
-      - setWeight: 60
-      - pause: {duration: 60s}
-      - setWeight: 80
-      - pause: {duration: 60s}
-      - setWeight: 100
-      canaryService: microservice-a-canary
-      stableService: microservice-a-stable
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -54,21 +40,7 @@ spec:
       - name: microservice-b
         image: marcelocollyer/microservice-b:v1
         ports:
-        - containerPort: 8080
-  strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {duration: 60s}
-      - setWeight: 40
-      - pause: {duration: 60s}
-      - setWeight: 60
-      - pause: {duration: 60s}
-      - setWeight: 80
-      - pause: {duration: 60s}
-      - setWeight: 100
-      canaryService: microservice-b-canary
-      stableService: microservice-b-stable    
+        - containerPort: 8080  
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -91,20 +63,6 @@ spec:
         image: marcelocollyer/microservice-c:v1
         ports:
         - containerPort: 8000
-  strategy:
-    canary: 
-      steps:
-      - setWeight: 20
-      - pause: {duration: 60s}
-      - setWeight: 40
-      - pause: {duration: 60s}
-      - setWeight: 60
-      - pause: {duration: 60s}
-      - setWeight: 80
-      - pause: {duration: 60s}
-      - setWeight: 100
-      canaryService: microservice-c-canary
-      stableService: microservice-c-stable
 ---
 apiVersion: v1
 kind: Service
@@ -115,19 +73,6 @@ spec:
   selector:
     app: microservice-a
     version: v1
-  ports:
-  - port: 3000
-    targetPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: microservice-a-canary
-  namespace: apps
-spec:
-  selector:
-    app: microservice-a
-    version: v2
   ports:
   - port: 3000
     targetPort: 3000
@@ -148,38 +93,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: microservice-b-canary
-  namespace: apps
-spec:
-  selector:
-    app: microservice-b
-    version: v2
-  ports:
-  - port: 8080
-    targetPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
   name: microservice-c-stable
   namespace: apps
 spec:
   selector:
     app: microservice-c
     version: v1
-  ports:
-  - port: 8000
-    targetPort: 8000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: microservice-c-canary
-  namespace: apps
-spec:
-  selector:
-    app: microservice-c
-    version: v2
   ports:
   - port: 8000
     targetPort: 8000
