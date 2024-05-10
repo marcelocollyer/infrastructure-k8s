@@ -111,6 +111,7 @@ metadata:
 spec:
   selector:
     app: microservice-a
+    version: v1
   ports:
   - port: 3000
     targetPort: 3000
@@ -123,6 +124,7 @@ metadata:
 spec:
   selector:
     app: microservice-a
+    version: v2
   ports:
   - port: 3000
     targetPort: 3000
@@ -135,6 +137,7 @@ metadata:
 spec:
   selector:
     app: microservice-b
+    version: v1
   ports:
   - port: 8080
     targetPort: 8080
@@ -147,6 +150,7 @@ metadata:
 spec:
   selector:
     app: microservice-b
+    version: v2
   ports:
   - port: 8080
     targetPort: 8080
@@ -159,6 +163,7 @@ metadata:
 spec:
   selector:
     app: microservice-c
+    version: v1
   ports:
   - port: 8000
     targetPort: 8000
@@ -171,6 +176,7 @@ metadata:
 spec:
   selector:
     app: microservice-c
+    version: v2
   ports:
   - port: 8000
     targetPort: 8000
