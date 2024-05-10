@@ -51,6 +51,8 @@ spec:
       containers:
       - name: microservice-b
         image: marcelocollyer/microservice-b:v1
+      - setWeight: 20
+      - pause: {duration: 60s}        
       - setWeight: 40
       - pause: {duration: 60s}
       - setWeight: 60
