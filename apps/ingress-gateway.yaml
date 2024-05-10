@@ -23,7 +23,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - microservice-a-gateway
+  - ingressgateway
   http:
   - route:
     - destination:
