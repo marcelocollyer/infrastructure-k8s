@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: microservice-a-gateway
+  namespace: apps
+spec:
+  selector:
+    istio: ingressgateway  # Utiliza o ingress gateway padrão do Istio
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
