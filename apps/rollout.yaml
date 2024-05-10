@@ -12,18 +12,16 @@ spec:
     metadata:
       labels:
         app: microservice-a
-        version: v1
+        version: v2
     spec:
       containers:
       - name: microservice-a
-        image: marcelocollyer/microservice-a:v1
+        image: marcelocollyer/microservice-a:v2
         ports:
         - containerPort: 3000
   strategy:
     canary:
       steps:
-      - setWeight: 20
-      - pause: {}
       - setWeight: 50
       - pause: {}
       - setWeight: 100
@@ -43,18 +41,16 @@ spec:
     metadata:
       labels:
         app: microservice-b
-        version: v1
+        version: v2
     spec:
       containers:
       - name: microservice-b
-        image: marcelocollyer/microservice-b:v1
+        image: marcelocollyer/microservice-b:v2
         ports:
         - containerPort: 8080  
   strategy:
     canary:
       steps:
-      - setWeight: 20
-      - pause: {}
       - setWeight: 50
       - pause: {}
       - setWeight: 100
@@ -74,18 +70,16 @@ spec:
     metadata:
       labels:
         app: microservice-c
-        version: v1
+        version: v2
     spec:
       containers:
       - name: microservice-c
-        image: marcelocollyer/microservice-c:v1
+        image: marcelocollyer/microservice-c:v2
         ports:
         - containerPort: 8000
   strategy:
     canary:
       steps:
-      - setWeight: 20
-      - pause: {}
       - setWeight: 50
       - pause: {}
       - setWeight: 100
@@ -102,8 +96,6 @@ spec:
   ports:
   - port: 3000
     targetPort: 3000
-    NodePort: 3000
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
