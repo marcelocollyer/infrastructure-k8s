@@ -51,8 +51,13 @@ spec:
       containers:
       - name: microservice-b
         image: marcelocollyer/microservice-b:v1
+        ports:
+        - containerPort: 8080
+  strategy:
+    canary:
+      steps:
       - setWeight: 20
-      - pause: {duration: 60s}        
+      - pause: {duration: 60s}
       - setWeight: 40
       - pause: {duration: 60s}
       - setWeight: 60
@@ -61,7 +66,7 @@ spec:
       - pause: {duration: 60s}
       - setWeight: 100
       canaryService: microservice-b-canary
-      stableService: microservice-b-stable     
+      stableService: microservice-b-stable    
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
