@@ -12,11 +12,11 @@ spec:
     metadata:
       labels:
         app: microservice-a
-        version: v2
+        version: v1
     spec:
       containers:
       - name: microservice-a
-        image: marcelocollyer/microservice-a:v2
+        image: marcelocollyer/microservice-a:v1
         ports:
         - containerPort: 3000
   strategy:
@@ -48,11 +48,11 @@ spec:
     metadata:
       labels:
         app: microservice-b
-        version: v2
+        version: v1
     spec:
       containers:
       - name: microservice-b
-        image: marcelocollyer/microservice-b:v2
+        image: marcelocollyer/microservice-b:v1
         ports:
         - containerPort: 8080
   strategy:
@@ -84,11 +84,11 @@ spec:
     metadata:
       labels:
         app: microservice-c
-        version: v2
+        version: v1
     spec:
       containers:
       - name: microservice-c
-        image: marcelocollyer/microservice-c:v2
+        image: marcelocollyer/microservice-c:v1
         ports:
         - containerPort: 8000
   strategy:
@@ -114,7 +114,7 @@ metadata:
 spec:
   selector:
     app: microservice-a
-    version: v2
+    version: v1
   ports:
   - port: 3000
     targetPort: 3000
@@ -127,7 +127,7 @@ metadata:
 spec:
   selector:
     app: microservice-a
-    version: v2
+    version: v1
   ports:
   - port: 3000
     targetPort: 3000
@@ -140,7 +140,7 @@ metadata:
 spec:
   selector:
     app: microservice-b
-    version: v2
+    version: v1
   ports:
   - port: 8080
     targetPort: 8080
@@ -153,7 +153,7 @@ metadata:
 spec:
   selector:
     app: microservice-b
-    version: v2
+    version: v1
   ports:
   - port: 8080
     targetPort: 8080
@@ -166,7 +166,7 @@ metadata:
 spec:
   selector:
     app: microservice-c
-    version: v2
+    version: v1
   ports:
   - port: 8000
     targetPort: 8000
@@ -179,7 +179,7 @@ metadata:
 spec:
   selector:
     app: microservice-c
-    version: v2
+    version: v1
   ports:
   - port: 8000
     targetPort: 8000

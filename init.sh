@@ -12,6 +12,9 @@ kubectl create namespace apps
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
+kubectl create namespace argo-rollouts
+kubectl apply -n argo-rollouts -f https://raw.githubusercontent.com/argoproj/argo-rollouts/stable/manifests/install.yaml
+
 kubectl apply -f argocd-app-deploy.yaml
 
 # Install Istio and set it to work with default namespace (use specific namespaces for your apps in prod!)
