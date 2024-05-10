@@ -22,7 +22,12 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 100         
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 50
+      - pause: {}
+      - setWeight: 100
+      - pause: {}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -48,7 +53,12 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 100         
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 50
+      - pause: {}
+      - setWeight: 100
+      - pause: {}   
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -74,17 +84,21 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 100         
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 50
+      - pause: {}
+      - setWeight: 100
+      - pause: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: microservice-a-stable
+  name: microservice-a
   namespace: apps
 spec:
   selector:
     app: microservice-a
-    version: v1
   ports:
   - port: 3000
     targetPort: 3000
@@ -92,12 +106,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: microservice-b-stable
+  name: microservice-b
   namespace: apps
 spec:
   selector:
     app: microservice-b
-    version: v1
   ports:
   - port: 8080
     targetPort: 8080
@@ -105,12 +118,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: microservice-c-stable
+  name: microservice-c
   namespace: apps
 spec:
   selector:
     app: microservice-c
-    version: v1
   ports:
   - port: 8000
     targetPort: 8000
