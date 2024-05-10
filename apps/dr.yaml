@@ -2,8 +2,9 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: microservice-b-destination-rule
+  namespace: apps
 spec:
-  host: microservice-b-stable
+  host: microservice-b
   subsets:
   - name: v1
     labels:
@@ -15,23 +16,10 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: microservice-b-destination-rule
-spec:
-  host: microservice-b-canary
-  subsets:
-  - name: v1
-    labels:
-      version: v1
-  - name: v2
-    labels:
-      version: v2      
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
   name: microservice-c-destination-rule
+  namespace: apps
 spec:
-  host: microservice-c-stable
+  host: microservice-c
   subsets:
   - name: v1
     labels:
@@ -39,17 +27,3 @@ spec:
   - name: v2
     labels:
       version: v2
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: microservice-c-destination-rule
-spec:
-  host: microservice-c-canary
-  subsets:
-  - name: v1
-    labels:
-      version: v1
-  - name: v2
-    labels:
-      version: v2      
