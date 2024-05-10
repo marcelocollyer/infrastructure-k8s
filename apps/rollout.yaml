@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: microservice-a
+        version: v1
     spec:
       containers:
       - name: microservice-a
@@ -47,6 +48,7 @@ spec:
     metadata:
       labels:
         app: microservice-b
+        version: v1
     spec:
       containers:
       - name: microservice-b
@@ -82,6 +84,7 @@ spec:
     metadata:
       labels:
         app: microservice-c
+        version: v1
     spec:
       containers:
       - name: microservice-c
