@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: microservice-a
-        image: marcelocollyer/microservice-a:v2
+        image: marcelocollyer/microservice-a:v1
         ports:
         - containerPort: 3000
   strategy:
@@ -50,14 +50,7 @@ spec:
     spec:
       containers:
       - name: microservice-b
-        image: marcelocollyer/microservice-b:v2
-        ports:
-        - containerPort: 8080
-  strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {duration: 60s}
+        image: marcelocollyer/microservice-b:v1
       - setWeight: 40
       - pause: {duration: 60s}
       - setWeight: 60
@@ -85,7 +78,7 @@ spec:
     spec:
       containers:
       - name: microservice-c
-        image: marcelocollyer/microservice-c:v2
+        image: marcelocollyer/microservice-c:v1
         ports:
         - containerPort: 8000
   strategy:
