@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: ingress-gateway
+  name: ingressgateway
 spec:
   selector:
     istio: ingressgateway
@@ -25,6 +25,21 @@ spec:
   http:
   - route:
     - destination:
-        host: microservice-a
+        host: microservice-a.apps.svc.cluster.local
         port:
           number: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: microservice-a-destinationrule
+  namespace: apps
+spec:
+  host: microservice-a
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2

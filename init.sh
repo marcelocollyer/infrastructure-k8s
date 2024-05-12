@@ -1,7 +1,7 @@
 # Run this script once to install argocd and istio
 # all the further updates will deploy automatically via argocd upon new tags on main branch
 k3d cluster delete
-k3d cluster create -p "3000:30000@loadbalancer" --agents 2
+k3d cluster create --agents 2
 
 # Install Istio and include it to PATH
 eval "$(curl -L https://istio.io/downloadIstio | sh - | sed -n '/export PATH.*/p')"
@@ -26,5 +26,7 @@ kubectl label namespace apps istio-injection=enabled
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.21/samples/addons/prometheus.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.21/samples/addons/grafana.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.21/samples/addons/kiali.yaml
+
+kubectl config set-context --current --namespace=apps
 
 echo "Argo Password: $(kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d)"

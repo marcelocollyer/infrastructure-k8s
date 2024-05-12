@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: microservice-a
-        image: marcelocollyer/microservice-a:v2
+        image: marcelocollyer/microservice-a:{{ .Values.image.tag }}
         ports:
         - containerPort: 3000
   strategy:
@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: microservice-b
-        image: marcelocollyer/microservice-b:v2
+        image: marcelocollyer/microservice-b:{{ .Values.image.tag }}
         ports:
         - containerPort: 8080  
   strategy:
@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
       - name: microservice-c
-        image: marcelocollyer/microservice-c:v2
+        image: marcelocollyer/microservice-c:{{ .Values.image.tag }}
         ports:
         - containerPort: 8000
   strategy:
@@ -100,7 +100,7 @@ spec:
   selector:
     app: microservice-a
   ports:
-  - port: 3000
+  - port: 8080
     targetPort: 3000
 ---
 apiVersion: v1
