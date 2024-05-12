@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: microservice-a
-        image: marcelocollyer/microservice-a:v0.0.8
+        image: marcelocollyer/microservice-a:v0.0.10
         ports:
         - containerPort: 3000
   strategy:
@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: microservice-b
-        image: marcelocollyer/microservice-b:v0.0.8
+        image: marcelocollyer/microservice-b:v0.0.10
         ports:
         - containerPort: 8080  
   strategy:
@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
       - name: microservice-c
-        image: marcelocollyer/microservice-c:v0.0.8
+        image: marcelocollyer/microservice-c:v0.0.10
         ports:
         - containerPort: 8000
   strategy:
